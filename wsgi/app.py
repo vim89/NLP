@@ -12,7 +12,7 @@ def index():
 @app.route('/api/v1/sentiment/<message>')
 def sentiment(message):
 	text = TextBlob(message)
-	response = {'polarity' : text.polarity , 'subjectivity' : text.subjectivity , 'pos' : text.tags , 'noun' : text.noun_phrases}
+	response = {'polarity' : text.polarity , 'subjectivity' : text.subjectivity }
 	return jsonify(response)
 	
 @app.route('/api/v1/lemm/<word>')
