@@ -72,7 +72,7 @@
 				if(result.polarity < 0.0){
 					console.log('less than 0');
 					$('#result').addClass("alert alert-danger").html(input+"<br/><br/>Sentiment: NEGATIVE");
-				} else if( result.polarity >= 0.0 && result.polarity <= 0.3){
+				} else if( result.polarity >= 0.0 && result.polarity <= 0.2){
 					console.log('between 0 and 0.5');
 					$('#result').addClass("alert alert-warning").html(input+"<br/><br/>Sentiment: NEUTRAL");
 				}else{
