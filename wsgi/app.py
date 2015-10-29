@@ -24,9 +24,10 @@ def pos(message):
 @app.route('/api/v1/lem/<message>')
 def lem(message):
 	text = Word(message)
-	lem = text.lemmetize()
+	lem =  text.lemmetize()
 	lemv = text.lemmetize("v")
-	response = {'lem' : lem, 'lemv' : lemv, 'defn' : Word(message).definitions}
+	defn = Word(message).definitions
+	response = {'lem' : lem, 'lemv' : lemv, 'defn' : defn}
 	return jsonify(response)
 	
 @app.route('/api/v1/langtrans/<message>')
