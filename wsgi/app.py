@@ -14,12 +14,6 @@ def sentiment(message):
 	text = TextBlob(message)
 	response = {'polarity' : text.polarity , 'subjectivity' : text.subjectivity }
 	return jsonify(response)
-	
-@app.route('/api/v1/lemm/<word>')
-def lemm(word):
-	text = Word(word)
-	response = {'lresponse' : text.lemmatize()}
-	return jsonify(response)
 
 if __name__ == "__main__":
 	app.run(debug=True)
