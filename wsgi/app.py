@@ -19,26 +19,26 @@ def sentiment(message):
 def pos(message):
 	text = TextBlob(message)
 	response = {'pos' : text.tags}
-	return response
+	return jsonify(response)
 	
 @app.route('/api/v1/lem/<message>')
 def lem(message):
 	text = Word(message)
 	response = {'lem' : text.lemmatize() , 'lemv' : text.lemmatize("v") , 'defn' : text.definitions}
-	return response
+	return jsonify(response)
 	
 @app.route('/api/v1/langtrans/<message>')
 def langtrans(message):
 	text = TextBlob(message)
 	response = {'french' : text.translate(to='fr') , 'spanish' : text.translate(to='fr')}
-	return response
+	return jsonify(response)
 	
 @app.route('/api/v1/spellcheck/<message>')
 def spellcheck(message):
 	text = TextBlob(message)
 	word = Word(message)
 	response = {'chk' : word.spellcheck() , 'crt' : text.correct()}
-	return response
+	return jsonify(response)
 
 if __name__ == "__main__":
 	app.run(debug=True)
