@@ -30,20 +30,29 @@
 	<div class="row">
 		<div class="col-md-6">
 			<label>Sentimental Analysis</label>
-			<textarea class="form-control" rows="3" placeholder="Write your text. Minimum length 10 characters"></textarea>	
+			<textarea id="sentip" class="form-control" rows="3" placeholder="Write your text. Minimum length 10 characters"></textarea>	
 		</div>
 		<div class="col-md-6">
 			<label>Result: </label>
-			<p id="result"></p>
+			<p id="sentiresult"></p>
 		</div>
 	</div>
-	
+	<div class="row">
+		<div class="col-md-6">
+			<label>Parts of speech</label>
+			<textarea id="posip" class="form-control" rows="3" placeholder="Write your text. Minimum length 10 characters"></textarea>	
+		</div>
+		<div class="col-md-6">
+			<label>Result: </label>
+			<p id="posresult"></p>
+		</div>
+	</div>
 </div>
 
 
 <script type="text/javascript" src="static/js/jquery.js"></script>
 <script type="text/javascript">
-	$("textarea").keyup(function(e){
+	$("#sentip").keyup(function(e){
 		console.log('keycode '+e.keyCode);
 		switch (e.keyCode) {
             case 8:  // Backspace
@@ -62,23 +71,23 @@
             	console.log('Down');
             break;
             default:
-            var input = $('textarea').val();
-            $('#result').removeClass("alert alert-warning");
-            $('#result').removeClass("alert alert-danger");
-            $('#result').removeClass("alert alert-success");
+            var input = $('sentip').val();
+            $('#sentiresult').removeClass("alert alert-warning");
+            $('#sentiresult').removeClass("alert alert-danger");
+            $('#sentiresult').removeClass("alert alert-success");
             if (input.length > 10){
 			
 			$.get('/api/v1/sentiment/'+input,function(result){
 				console.log(result.polarity);
 				if(result.polarity < 0.0){
 					console.log('less than 0');
-					$('#result').addClass("alert alert-danger").html(input+"<br/><br/>Sentiment: NEGATIVE");
+					$('#sentiresult').addClass("alert alert-danger").html(input+"<br/><br/>Sentiment: NEGATIVE");
 				} else if( result.polarity >= 0.0 && result.polarity <= 0.2){
 					console.log('between 0 and 0.5');
-					$('#result').addClass("alert alert-warning").html(input+"<br/><br/>Sentiment: NEUTRAL");
+					$('#sentiresult').addClass("alert alert-warning").html(input+"<br/><br/>Sentiment: NEUTRAL");
 				}else{
 					console.log('Greater than 0.5');
-					$('#result').addClass("alert alert-success").html(input+"<br/><br/>Sentiment: POSITIVE");
+					$('#sentiresult').addClass("alert alert-success").html(input+"<br/><br/>Sentiment: POSITIVE");
 				}
 				
 			})
