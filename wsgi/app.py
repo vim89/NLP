@@ -1,6 +1,5 @@
 from flask import Flask , jsonify, render_template
 from textblob import TextBlob
-from textblob import Word
 
 app = Flask(__name__)
 
@@ -12,7 +11,7 @@ def index():
 @app.route('/api/v1/sentiment/<message>')
 def sentiment(message):
 	text = TextBlob(message)
-	response = {'polarity' : text.polarity , 'subjectivity' : text.subjectivity }
+	response = {'polarity' : text.polarity , 'subjectivity' : text.subjectivity}
 	return jsonify(response)
 
 if __name__ == "__main__":
