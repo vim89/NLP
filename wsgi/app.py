@@ -1,5 +1,6 @@
 from flask import Flask , jsonify, render_template
 from textblob import TextBlob
+from textblob import Word
 
 app = Flask(__name__)
 
@@ -17,7 +18,14 @@ def sentiment(message):
 @app.route('/api/v1/pos/<message>')
 def pos(message):
 	text = TextBlob(message)
-	response = {'pos' : text.tags, 'nou' : text.noun_phrases}
+	response = {'pos' : text.tags, 'nou' : str(text.noun_phrases)}
+	return jsonify(response)
+
+@app.route('/api/v1/lem/<message>')
+def lem(message):
+	text = TextBlob(message)
+	word = Word(message)
+	response = {'lem' : str(word.lemmetize()), 'lemv' : str(word.lemmetize("v")), 'defn' : str(word.definitions)}
 	return jsonify(response)
 	
 @app.route('/api/v1/langtrans/<message>')
