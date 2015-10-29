@@ -23,25 +23,17 @@ def pos(message):
 	
 @app.route('/api/v1/lem/<message>')
 def lem(message):
-	text = Word(message)
-	lem =  text.lemmetize()
-	lemv = text.lemmetize("v")
-	defn = Word(message).definitions
-	response = {'lem' : lem, 'lemv' : jsonify(lemv), 'defn' : jsonify(defn)}
-	return jsonify(response)
+	return jsonify(Word(message).definitions)
 	
 @app.route('/api/v1/langtrans/<message>')
 def langtrans(message):
 	text = TextBlob(message)
-	response = {'french' : jsonify(text.translate(to='fr')) , 'spanish' : jsonify(text.translate(to='es'))}
-	return jsonify(response)
+	return jsonify(text.translate(to='fr'))
 	
 @app.route('/api/v1/spellcheck/<message>')
 def spellcheck(message):
 	text = TextBlob(message)
-	word = Word(message)
-	response = {'chk' : jsonify(word.spellcheck()) , 'crt' : jsonify(text.correct())}
-	return jsonify(response)
+	return jsonify(text.correct())
 
 if __name__ == "__main__":
 	app.run(debug=True)
