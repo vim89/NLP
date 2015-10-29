@@ -20,7 +20,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Natural Language Processing & Sentimental Analysis - Seminar by Sifaat</a>
+          <a class="navbar-brand" href="#">Natural Language Processing and Sentimental Analysis - Seminar by Sifaat</a>
         </div>
         
     </div>
@@ -65,19 +65,19 @@
             $('#result').removeClass("alert alert-warning");
             $('#result').removeClass("alert alert-danger");
             $('#result').removeClass("alert alert-success");
-            if (input.length > 10){
+            if (input.length > 8){
 			
 			$.get('/api/v1/sentiment/'+input,function(result){
 				console.log(result.polarity);
 				if(result.polarity < 0.0){
 					console.log('less than 0');
-					$('#result').addClass("alert alert-danger").html(input+"<br/><br/>Parts of Speech: "+result.pos+"<br/><br/>Noun words: "+result.noun+"<br/><br/>Sentiment: POSITIVE");
-				} else if( result.polarity >= 0.0 && result.polarity <= 0.3){
-					console.log('between 0 and 0.5');
+					$('#result').addClass("alert alert-danger").html(input+"<br/><br/>Parts of Speech: "+result.pos+"<br/><br/>Noun words: "+result.noun+"<br/><br/>Sentiment: NEGATIVE");
+				} else if(result.polarity >= 0.0 && result.polarity <= 0.3){
+					console.log('between 0 and 0.3');
 					$('#result').addClass("alert alert-warning").html(input+"<br/><br/>Parts of Speech: "+result.pos+"<br/><br/>Noun words: "+result.noun+"<br/><br/>Sentiment: NEUTRAL");
 				}else{
-					console.log('Greater than 0.5');
-					$('#result').addClass("alert alert-success").html(input+"<br/><br/>Parts of Speech: "+result.pos+"<br/><br/>Noun words: "+result.noun+"<br/><br/>Sentiment: NEGATIVE");
+					console.log('Greater than 0.3');
+					$('#result').addClass("alert alert-success").html(input+"<br/><br/>Parts of Speech: "+result.pos+"<br/><br/>Noun words: "+result.noun+"<br/><br/>Sentiment: POSITIVE");
 				}
 				
 			})
