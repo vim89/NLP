@@ -1,5 +1,6 @@
 from flask import Flask , jsonify, render_template
 from textblob import TextBlob
+from textblob import Word
 
 app = Flask(__name__)
 
@@ -12,6 +13,12 @@ def index():
 def sentiment(message):
 	text = TextBlob(message)
 	response = {'polarity' : text.polarity , 'subjectivity' : text.subjectivity , 'pos' : text.tags , 'noun' : text.noun_phrases}
+	return jsonify(response)
+	
+@app.route('/api/v1/lemm/<word>')
+def lemm(word):
+	text = Word(word)
+	response = {'lresponse' : text.w.lemmatize()}
 	return jsonify(response)
 
 if __name__ == "__main__":
