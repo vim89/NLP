@@ -125,6 +125,34 @@
 	}
     
 	});
+	$("#posip").keyup(function(e){
+		console.log('keycode '+e.keyCode);
+		switch (e.keyCode) {
+            case 8:  // Backspace
+                console.log('backspace'+e);
+            case 9:  // Tab
+            	console.log('Tab');
+            case 13: // Enter
+            	console.log('Enter');
+            case 37: // Left
+            	console.log('Left');
+            case 38: // Up
+            	console.log('Up');
+            case 39: // Right
+            	console.log('Right');
+            case 40: // Down
+            	console.log('Down');
+            break;
+            default:
+            var input = $('#posip').val();
+            $('#posresult').removeClass("alert alert-success");
+	    $.get('/api/v1/pos/'+input,function(result){
+	    	console.log(result.pos);
+	    	$('#posresult').addClass("alert alert-success").html("Parts of speech:<br/>"+result.pos);
+	    })
+	}
+    
+	});
 </script>
 </body>
 </html>
