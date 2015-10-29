@@ -232,7 +232,7 @@
             var input = $('#scip').val();
             $('#scresult').removeClass("alert alert-success");
 	    $.get('/api/v1/spellcheck/'+input,function(result){
-	     	$('#scresult').addClass("alert alert-danger").html("Is Correct:<br/>"+result.chk+"<br/>Corrected: "+result.crt);
+	     	$('#scresult').addClass("alert alert-danger").html("Corrected: "+result.crt);
 	    })
 	}
     
