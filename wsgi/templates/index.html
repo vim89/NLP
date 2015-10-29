@@ -147,7 +147,6 @@
             var input = $('#posip').val();
             $('#posresult').removeClass("alert alert-success");
 	    $.get('/api/v1/pos/'+input,function(result){
-	    	console.log(result.pos);
 	    	$('#posresult').addClass("alert alert-success").html("Parts of speech:<br/>"+result.pos);
 	    })
 	}
@@ -177,7 +176,6 @@
             var input = $('#lemip').val();
             $('#lemresult').removeClass("alert alert-warning");
 	    $.get('/api/v1/lem/'+input,function(result){
-	    	console.log(result.lem);
 	    	$('#lemresult').addClass("alert alert-warning").html("Lemmetized Word: "+result.lem+"<br/>Lemmetized Word to verb: "+result.lemv+"<br/>Definition of word: "+result.defn);
 	    })
 	}
@@ -206,7 +204,6 @@
             var input = $('#ltip').val();
             $('#ltresult').removeClass("alert alert-success");
 	    $.get('/api/v1/langtrans/'+input,function(result){
-	    	console.log(result.pos);
 	    	$('#ltresult').addClass("alert alert-success").html("Language Translation:<br/>French: "+result.french+"<br/>Spanish: "+result.spanish);
 	    })
 	}
@@ -235,8 +232,7 @@
             var input = $('#scip').val();
             $('#scresult').removeClass("alert alert-success");
 	    $.get('/api/v1/spellcheck/'+input,function(result){
-	    	console.log(result.pos);
-	    	$('#scresult').addClass("alert alert-danger").html("Is Correct:<br/>"+result.chk+"<br/>Corrected: "+result.crt);
+	     	$('#scresult').addClass("alert alert-danger").html("Is Correct:<br/>"+result.chk+"<br/>Corrected: "+result.crt);
 	    })
 	}
     
