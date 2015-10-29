@@ -13,6 +13,12 @@ def sentiment(message):
 	text = TextBlob(message)
 	response = {'polarity' : text.polarity , 'subjectivity' : text.subjectivity , 'nou' : text.tags}
 	return jsonify(response)
+	
+@app.route('/api/v1/pos/<message>')
+def pos(message):
+	text = TextBlob(message)
+	response = {'pos' : text.tags}
+	return jsonify(response)
 
 if __name__ == "__main__":
 	app.run(debug=True)
