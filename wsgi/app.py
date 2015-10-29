@@ -18,7 +18,7 @@ def sentiment(message):
 @app.route('/api/v1/lemm/<word>')
 def lemm(word):
 	text = Word(word)
-	response = {'lresponse' : text.w.lemmatize()}
+	response = {'lresponse' : text.lemmatize()}
 	return jsonify(response)
 
 if __name__ == "__main__":
