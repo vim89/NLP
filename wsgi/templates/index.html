@@ -49,7 +49,7 @@
 	</div>
 	<div class="row">
 	<div class="col-md-6">
-			<label>Words Lemmetization</label>
+			<label>Word Lemmetization</label>
 			<textarea id="lemip" class="form-control" rows="3" placeholder="Write words."></textarea>	
 		</div>
 		<div class="col-md-6">
@@ -149,6 +149,94 @@
 	    $.get('/api/v1/pos/'+input,function(result){
 	    	console.log(result.pos);
 	    	$('#posresult').addClass("alert alert-success").html("Parts of speech:<br/>"+result.pos);
+	    })
+	}
+    
+	});
+	
+	
+	$("#lemip").keyup(function(e){
+		console.log('keycode '+e.keyCode);
+		switch (e.keyCode) {
+            case 8:  // Backspace
+                console.log('backspace'+e);
+            case 9:  // Tab
+            	console.log('Tab');
+            case 13: // Enter
+            	console.log('Enter');
+            case 37: // Left
+            	console.log('Left');
+            case 38: // Up
+            	console.log('Up');
+            case 39: // Right
+            	console.log('Right');
+            case 40: // Down
+            	console.log('Down');
+            break;
+            default:
+            var input = $('#lemip').val();
+            $('#lemresult').removeClass("alert alert-warning");
+	    $.get('/api/v1/lem/'+input,function(result){
+	    	console.log(result.lem);
+	    	$('#lemresult').addClass("alert alert-warning").html("Lemmetized Word: "+result.lem+"<br/>Lemmetized Word to verb: "+result.lemv+"<br/>Definition of word: "+result.defn);
+	    })
+	}
+    
+	});
+	
+	$("#ltip").keyup(function(e){
+		console.log('keycode '+e.keyCode);
+		switch (e.keyCode) {
+            case 8:  // Backspace
+                console.log('backspace'+e);
+            case 9:  // Tab
+            	console.log('Tab');
+            case 13: // Enter
+            	console.log('Enter');
+            case 37: // Left
+            	console.log('Left');
+            case 38: // Up
+            	console.log('Up');
+            case 39: // Right
+            	console.log('Right');
+            case 40: // Down
+            	console.log('Down');
+            break;
+            default:
+            var input = $('#ltip').val();
+            $('#ltresult').removeClass("alert alert-success");
+	    $.get('/api/v1/langtrans/'+input,function(result){
+	    	console.log(result.pos);
+	    	$('#ltresult').addClass("alert alert-success").html("Language Translation:<br/>French: "+result.french+"<br/>Spanish: "+result.spanish);
+	    })
+	}
+    
+	});
+	
+	$("#scip").keyup(function(e){
+		console.log('keycode '+e.keyCode);
+		switch (e.keyCode) {
+            case 8:  // Backspace
+                console.log('backspace'+e);
+            case 9:  // Tab
+            	console.log('Tab');
+            case 13: // Enter
+            	console.log('Enter');
+            case 37: // Left
+            	console.log('Left');
+            case 38: // Up
+            	console.log('Up');
+            case 39: // Right
+            	console.log('Right');
+            case 40: // Down
+            	console.log('Down');
+            break;
+            default:
+            var input = $('#scip').val();
+            $('#scresult').removeClass("alert alert-success");
+	    $.get('/api/v1/spellcheck/'+input,function(result){
+	    	console.log(result.pos);
+	    	$('#scresult').addClass("alert alert-danger").html("Is Correct:<br/>"+result.chk+"<br/>Corrected: "+result.crt);
 	    })
 	}
     
