@@ -27,20 +27,20 @@ def lem(message):
 	lem =  text.lemmetize()
 	lemv = text.lemmetize("v")
 	defn = Word(message).definitions
-	response = {'lem' : lem, 'lemv' : lemv, 'defn' : defn}
+	response = {'lem' : lem, 'lemv' : jsonify(lemv), 'defn' : jsonify(defn)}
 	return jsonify(response)
 	
 @app.route('/api/v1/langtrans/<message>')
 def langtrans(message):
 	text = TextBlob(message)
-	response = {'french' : text.translate(to='fr') , 'spanish' : text.translate(to='fr')}
+	response = {'french' : jsonify(text.translate(to='fr')) , 'spanish' : jsonify(text.translate(to='es'))}
 	return jsonify(response)
 	
 @app.route('/api/v1/spellcheck/<message>')
 def spellcheck(message):
 	text = TextBlob(message)
 	word = Word(message)
-	response = {'chk' : word.spellcheck() , 'crt' : text.correct()}
+	response = {'chk' : jsonify(word.spellcheck()) , 'crt' : jsonify(text.correct())}
 	return jsonify(response)
 
 if __name__ == "__main__":
