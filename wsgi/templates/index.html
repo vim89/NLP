@@ -72,13 +72,13 @@
 				console.log(result.polarity);
 				if(result.polarity < 0.0){
 					console.log('less than 0');
-					$('#result').addClass("alert alert-danger").html(input+"<br/><br/>Parts of Speech: "+result.pos+"<br/><br/>Noun words: "+result.noun+"<br/><br/>Sentiment: NEGATIVE");
+					$('#result').addClass("alert alert-danger").text(input+"<br/><br/>Parts of Speech: "+result.pos+"<br/><br/>Noun words: "+result.noun+"<br/><br/>Sentiment: NEGATIVE");
 				} else if(result.polarity >= 0.0 && result.polarity <= 0.3){
 					console.log('between 0 and 0.3');
-					$('#result').addClass("alert alert-warning").html(input+"<br/><br/>Parts of Speech: "+result.pos+"<br/><br/>Noun words: "+result.noun+"<br/><br/>Sentiment: NEUTRAL");
+					$('#result').addClass("alert alert-warning").text(input+"<br/><br/>Parts of Speech: "+result.pos+"<br/><br/>Noun words: "+result.noun+"<br/><br/>Sentiment: NEUTRAL");
 				}else{
 					console.log('Greater than 0.3');
-					$('#result').addClass("alert alert-success").html(input+"<br/><br/>Parts of Speech: "+result.pos+"<br/><br/>Noun words: "+result.noun+"<br/><br/>Sentiment: POSITIVE");
+					$('#result').addClass("alert alert-success").text(input+"<br/><br/>Parts of Speech: "+result.pos+"<br/><br/>Noun words: "+result.noun+"<br/><br/>Sentiment: POSITIVE");
 				}
 				
 			})
