@@ -29,10 +29,18 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6">
-			<textarea class="form-control" rows="3" placeholder="Write your text. Minimum length 10 characters"></textarea>	
+			<label>Natural Language Processing & Sentimental Analysis</label>
+			<textarea id = "#senti" class="form-control" rows="3" placeholder="Write your text. Minimum length 10 characters"></textarea>	
 		</div>
 		<div class="col-md-6">
 			<p id="result"></p>
+		</div>
+		<div class="col-md-6">
+			<label>Word Lemmetization</label>
+			<textarea id="lemip" class="form-control" rows="3" placeholder="Write your text. Minimum length 10 characters"></textarea>	
+		</div>
+		<div class="col-md-6">
+			<p id="lemresult"></p>
 		</div>
 	</div>
 	
@@ -41,7 +49,7 @@
 
 <script type="text/javascript" src="static/js/jquery.js"></script>
 <script type="text/javascript">
-	$("textarea").keyup(function(e){
+	$("#senti").keyup(function(e){
 		console.log('keycode '+e.keyCode);
 		switch (e.keyCode) {
             case 8:  // Backspace
@@ -85,6 +93,36 @@
 	}
     
 
+	});
+	
+$("#lemip").keyup(function(e){
+	console.log('keycode '+e.keyCode);
+	switch (e.keyCode) {
+            case 8:  // Backspace
+                console.log('backspace'+e);
+            case 9:  // Tab
+            	console.log('Tab');
+            case 13: // Enter
+            	console.log('Enter');
+            case 37: // Left
+            	console.log('Left');
+            case 38: // Up
+            	console.log('Up');
+            case 39: // Right
+            	console.log('Right');
+            case 40: // Down
+            	console.log('Down');
+            break;
+            default:
+            var input = $('#lemip').val();
+	
+		$.get('/api/v1/lemm/'+input, function(result) {
+			console.log(result);
+			$('#lemresult').addClass("alert alert-success").html("<h1>"+result.lresponse+"</h1>");
+
+		})
+	}
+    
 	});
 
 </script>
