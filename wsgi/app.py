@@ -17,19 +17,19 @@ def sentiment(message):
 @app.route('/api/v1/pos/<message>')
 def pos(message):
 	text = TextBlob(message)
-	response = {'pos' : text.tags}
+	response = {'pos' : text.tags, 'nou' : text.noun_phrases}
 	return jsonify(response)
 	
 @app.route('/api/v1/langtrans/<message>')
 def langtrans(message):
 	text = TextBlob(message)
-	response = {'french' : text.translate(to='fr'), 'spanish' : text.translate(to='es')}
+	response = {'french' : str(text.translate(to='fr')), 'spanish' : str(text.translate(to='es'))}
 	return jsonify(response)
 	
 @app.route('/api/v1/spellcheck/<message>')
 def spellcheck(message):
 	text = TextBlob(message)
-	response = {'crt' : text.correct()}
+	response = {'crt' : str(text.correct())}
 	return jsonify(response)
 
 if __name__ == "__main__":
