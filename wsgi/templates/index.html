@@ -147,7 +147,7 @@
             var input = $('#posip').val();
             $('#posresult').removeClass("alert alert-success");
 	    $.get('/api/v1/pos/'+input,function(result){
-	    	$('#posresult').addClass("alert alert-success").html("Parts of speech:"+JSON.stringify(result.pos)+"<br/><br/>Nouns only: "+JSON.stringify(result.nou);
+	    	$('#posresult').addClass("alert alert-success").html("Parts of speech:"+JSON.stringify(result.pos)+"<br/><br/>Nouns only: "+JSON.stringify(result.nou));
 	    })
 	}
     
@@ -232,7 +232,7 @@
             var input = $('#scip').val();
             $('#scresult').removeClass("alert alert-success");
 	    $.get('/api/v1/spellcheck/'+input,function(result){
-	     	$('#scresult').addClass("alert alert-danger").html("Corrected: "+result.crt);
+	     	$('#scresult').addClass("alert alert-danger").html("Corrected: "+JSON.stringify(result.crt));
 	    })
 	}
     
