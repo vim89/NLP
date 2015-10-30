@@ -1,4 +1,4 @@
-from flask import Flask , jsonify, render_template, request, abort
+from flask import Flask , jsonify, render_template
 from textblob import TextBlob
 from textblob import Word
 from text.utils import strip_punc
