@@ -18,6 +18,7 @@ def sentiment(message):
 @app.route('/api/v1/pos/<message>')
 def pos(message):
 	text = TextBlob(message)
+	response = {'pos' : text.tags, 'nou' : text.noun_phrases}
 	response = {'pos' : text.tags}
 	return jsonify(response)
 
@@ -25,7 +26,7 @@ def pos(message):
 def lem(message):
 	text = TextBlob(message)
 	word = Word(message)
-	response = {'lem' : str(word.lemmetize()), 'lemv' : str(word.lemmetize("v")), 'defn' : str(word.definitions)}
+	response = {'lem' : str(word.lemmetize()), 'lemv' : str(word.lemmetize("v")), 'defn' : str(Word(text.correct()).definitions)}
 	return jsonify(response)
 	
 @app.route('/api/v1/langtrans/<message>')
