@@ -1,3 +1,4 @@
+import os
 from flask import Flask , jsonify, render_template
 from textblob import TextBlob
 from textblob import Word
@@ -23,6 +24,7 @@ def pos(message):
 
 @app.route('/api/v1/lem/<message>')
 def lem(message):
+	os.environ["NLTK_DATA"] = "$OPENSHIFT_DATA_DIR/nltk"
 	text = TextBlob(message)
 	word = Word(message)
 	response = {'lem' : str(word.lemmetize()), 'lemv' : str(word.lemmetize("v")), 'defn' : str(Word(text.correct()).definitions)}
