@@ -1,11 +1,11 @@
-import os
 from flask import Flask , jsonify, render_template
 from textblob import TextBlob
 from textblob import Word
+from subprocess import call
 
 app = Flask(__name__)
 
-os.environ["NLTK_DATA"] = "$OPENSHIFT_DATA_DIR/nltk"
+call(["declare", "-x", "NLTK_DATA=\"$OPENSHIFT_DATA_DIR/nltk\""])
 
 @app.route('/')
 @app.route('/index')
@@ -26,7 +26,7 @@ def pos(message):
 
 @app.route('/api/v1/lem/<message>')
 def lem(message):
-	os.environ["NLTK_DATA"] = "$OPENSHIFT_DATA_DIR/nltk"
+	call(["declare", "-x", "NLTK_DATA=\"$OPENSHIFT_DATA_DIR/nltk\""])
 	text = TextBlob(message)
 	word = Word(message)
 	response = {'lem' : str(word.lemmetize()), 'lemv' : str(word.lemmetize("v")), 'defn' : str(Word(text.correct()).definitions)}
