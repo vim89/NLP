@@ -1,7 +1,7 @@
 from flask import Flask , jsonify, render_template
 from textblob import TextBlob
 from textblob import Word
-from text.utils import strip_punc
+from textutils import strip_punc
 
 app = Flask(__name__)
 
