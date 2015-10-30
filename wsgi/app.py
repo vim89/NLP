@@ -18,7 +18,7 @@ def sentiment(message):
 @app.route('/api/v1/pos/<message>')
 def pos(message):
 	text = TextBlob(message)
-	noun_phrases = set(text.noun_phrases)
+	noun_phrases = text.noun_phrases
 	nou = []
 	for n in noun_phrases:
 		nou.append(n)
