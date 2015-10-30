@@ -5,12 +5,8 @@ virtenv = os.environ['OPENSHIFT_PYTHON_DIR'] + '/virtenv/'
 virtualenv = os.path.join(virtenv, 'bin/activate_this.py')
 os.environ['NLTK_DATA'] = "$OPENSHIFT_DATA_DIR/nltk"
 
-nltkenv = os.environ['NLTK_DATA']
-nltkenvi = os.path.join(nltkenv, 'bin/activate_this.py')
-
 try:
     execfile(virtualenv, dict(__file__=virtualenv))
-    execfile(nltkenvi, dict(__file__=nltkenvi))
 except IOError:
     pass
 #
