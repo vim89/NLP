@@ -1,6 +1,8 @@
-from flask import Flask , jsonify, render_template
+from flask import Flask , jsonify, render_template, request, abort
 from textblob import TextBlob
 from textblob import Word
+from text.utils import strip_punc
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -17,7 +19,10 @@ def sentiment(message):
 @app.route('/api/v1/pos/<message>')
 def pos(message):
 	text = TextBlob(message)
-	response = {'pos' : text.tags}
+	noun_phrases = set(text.noun_phrases)
+    	# Strip punctuation from ends of noun phrases and exclude long phrases
+    	stripped = [strip_punc(np) for np in noun_phrases if len(np.split()) <= 5]
+	response = {'pos' : text.tags, nou : stripped}
 	return jsonify(response)
 
 @app.route('/api/v1/lem/<message>')
