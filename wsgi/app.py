@@ -5,6 +5,8 @@ from textblob import Word
 
 app = Flask(__name__)
 
+os.environ["NLTK_DATA"] = "$OPENSHIFT_DATA_DIR/nltk"
+
 @app.route('/')
 @app.route('/index')
 def index():
