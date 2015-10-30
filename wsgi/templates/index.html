@@ -147,7 +147,7 @@
             var input = $('#posip').val();
             $('#posresult').removeClass("alert alert-success");
 	    $.get('/api/v1/pos/'+input,function(result){
-	    	$('#posresult').addClass("alert alert-success").text("Parts of speech:\n"+result.pos+"<br/>Nouns only: "+result.nou);
+	    	$('#posresult').addClass("alert alert-success").html("Parts of speech:"+JSON.stringify(result.pos)+"<br/>Nouns only: "+result.nou);
 	    })
 	}
     
