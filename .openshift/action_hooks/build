@@ -1,1 +1,1 @@
-export NLTK_DATA=$OPEN_SHIFT_DIR
+export NLTK_DATA=$OPEN_SHIFT_DIR/nltk
