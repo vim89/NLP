@@ -17,7 +17,6 @@ def sentiment(message):
 @app.route('/api/v1/pos/<message>')
 def pos(message):
 	text = TextBlob(message)
-	//x = jsonify(text.noun_phrases)
 	response = {'pos' : text.tags}
 	return jsonify(response)
 
