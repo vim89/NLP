@@ -37,7 +37,7 @@ def langtrans(message):
 @app.route('/api/v1/spellcheck/<message>')
 def spellcheck(message):
 	text = TextBlob(message)
-	response = {'crt' : str(text.correct())}
+	response = {'crt' : print(text.correct())}
 	return jsonify(response)
 
 if __name__ == "__main__":
