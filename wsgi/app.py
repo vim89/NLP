@@ -18,7 +18,7 @@ def sentiment(message):
 @app.route('/api/v1/pos/<message>')
 def pos(message):
 	text = TextBlob(message)
-	response = {'pos' : text.tags}
+	response = {'pos' : text.tags, 'nou' : str(text.noun_phrases)}
 	return jsonify(response)
 
 @app.route('/api/v1/lem/<message>')
@@ -37,7 +37,7 @@ def langtrans(message):
 @app.route('/api/v1/spellcheck/<message>')
 def spellcheck(message):
 	text = TextBlob(message)
-	response = {'crt' : jsonify(text.correct())}
+	response = {'crt' : str(text.correct())}
 	return jsonify(response)
 
 if __name__ == "__main__":
