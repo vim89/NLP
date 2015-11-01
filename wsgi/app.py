@@ -1,6 +1,7 @@
 from flask import Flask , jsonify, render_template
 from textblob import TextBlob
 from textblob import Word
+from nltk.tag import pos_tag
 
 app = Flask(__name__)
 
@@ -18,9 +19,9 @@ def sentiment(message):
 @app.route('/api/v1/pos/<message>')
 def pos(message):
 	text = TextBlob(message)
-	nou = text.noun_phrases
-	str1 = ''.join(nou)
-	response = {'pos' : text.tags, 'nou' : str1}
+	tagged_sent = pos_tag(sentence.split())
+	propernouns = [word for word,pos in tagged_sent if pos == 'NNP']
+	response = {'pos' : text.tags, 'nou' : propernouns}
 	return jsonify(response)
 
 @app.route('/api/v1/lem/<message>')
