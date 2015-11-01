@@ -23,7 +23,7 @@ def pos(message):
 
 @app.route('/api/v1/lem/<message>')
 def lem(message):
-	defnn = Word(message).definitions
+	defnn = ''.join(Word(message).definitions)
 	response = {'defn' : defnn}
 	return jsonify(response)
 	
