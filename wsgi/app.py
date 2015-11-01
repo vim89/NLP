@@ -18,18 +18,13 @@ def sentiment(message):
 @app.route('/api/v1/pos/<message>')
 def pos(message):
 	text = TextBlob(message)
-	nn = []
-	for item in text.noun_phrases:
-		nn.append(item)
-	propernouns = 'Nouns only'
-	response = {'pos' : text.tags, 'nou' : nn}
+	response = {'pos' : text.tags}
 	return jsonify(response)
 
 @app.route('/api/v1/lem/<message>')
 def lem(message):
 	text = TextBlob(message)
-	word = Word(message)
-	defnn = str(Word(message).definitions)
+	defnn = Word(message).definitions
 	response = {'lem' : str(word.lemmetize()), 'lemv' : str(word.lemmetize("v")), 'defn' : defnn}
 	return jsonify(response)
 	
@@ -42,7 +37,8 @@ def langtrans(message):
 @app.route('/api/v1/spellcheck/<message>')
 def spellcheck(message):
 	text = TextBlob(message)
-	response = {'crt' : str(text.correct())}
+	cc = text.correct()
+	response = {'crt' : cc}
 	return jsonify(response)
 
 if __name__ == "__main__":
